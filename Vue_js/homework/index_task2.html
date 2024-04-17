@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <!-- Есть список элементов. Пользователь может добавлять новые элементы списка с текстом “Новый элемент списка” нажав на кнопку "Добавить". -->
+    <div id="app">
+        <h2>Список</h2>
+        <ul>
+            <li v-for="(el, id) in listElements" :key="el">{{ el  }} {{id +1}}</li>
+        </ul>
+        <button @click="addElement()">Добавить</button>
+
+    </div>
+
+    <script>
+        new Vue ({
+            el:'#app',
+            data:{
+                listElements:[]
+
+            },
+            methods: {
+                addElement(){
+                    this.listElements.push('Новый элемент списка')
+
+                }
+                
+            },
+
+        })
+    </script>
+    
+</body>
+</html>

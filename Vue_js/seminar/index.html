@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{hello}}</p>
+      <p>Товаров в корзине:{{countProduct}}</p>
+      <button @click="addProduct">Купить</button>
+      <div v-for="product in cart" :key="product.id" class="cartBox">
+        <p>Name:{{product.name}}</p>
+        <button @click="addProduct(product)">{{product.buttonText}}</button>
+      </div>
+      <div>
+        <button @click="isTrue=true">Мне уже 14 лет</button>
+        <button @click="isTrue=false">Мне нет 14 лет</button>
+        <p v-if="isTrue">14+ cjntent</p>
+        <p v-else>Доступ закрыт</p>
+      </div>
+      <div>
+        <button @click="showContent = !showContent">Показать еще</button>
+        <div v-if="showContent">Еще контерн</div>
+        <div>
+          <button @click="getRandomNumber">Сгенирировать число</button>
+          <p>{{randomNumber}}</p>
+          <div>{{getNumberInfo}}</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          hello: "Hello world",
+          countProduct: 0,
+          cart: [
+            { id: 1, name: "milk", inCart: false, buttonText: "Bay" },
+            {
+              id: 2,
+              name: "bred",
+              inCart: false,
+              buttonText: "Bay",
+            },
+            {
+              id: 3,
+              name: "cafe",
+              inCart: false,
+              buttonText: "Bay",
+            },
+            {
+              id: 4,
+              name: "ogurt",
+              inCart: false,
+              buttonText: "Bay",
+            },
+          ],
+          isTrue: false,
+          showContent: false,
+          numberInfo: "Number",
+          randomNumber: 0,
+        },
+        methods: {
+          addProduct(product) {
+            if (!product.inCart) {
+              product.inCart = true;
+              this.countProduct++;
+              product.buttonText = "Товар в корзине";
+            }
+          },
+          getRandomNumber() {
+            this.randomNumber = Math.floor(Math.random() * 10 + 1);
+          },
+        },
+        computed: {
+          getNumberInfo() {
+            if (this.randomNumber < 5) {
+              return "Число меньше 5";
+            } else if (this.randomNumber === 10) {
+              return "Число равно 10";
+            } else {
+              return "Число от 5 до 10";
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

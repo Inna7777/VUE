@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  
+<style>
+    .block{
+        width: 350px;
+        height: 200px;
+        
+    }
+    .btn{
+        width: 35px;
+        height: 35px;
+    }
+    .like{
+        color: red;
+    }
+</style>
+</head>
+
+<body> 
+   
+    <div id="app">
+        <label for="myInput">Введите</label>
+       <input type="text" @keyup.enter="send()" id="myInput">
+       <h2>Link element</h2>
+       <a :href="linkHref" >my new link</a>
+       <img :src="imgPhoto" alt="photo">
+       <button @click="send()">Отправить</button>
+       <h2>Конструктор</h2>
+       <input type="text" v-model="blockWidth" aria-label="#">
+       <input type="text" v-model="blockColor" aria-label="#">
+       <div class="block" :style="change">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sint maxime voluptatum ipsam natus,.</div>
+    
+    <h2>{{ modelData }}</h2>
+    <label for="111">введите</label>
+    <input type="text" v-model="modelData" id="111">
+    <button  @click ='headingText()'class="heading_button">Click heading</button>
+    <h2>Калькулятор</h2>
+    <input type="text" v-model.number="firstNumber" aria-label="#">
+    <input type="text" v-model.number="secondNumber" aria-label="#">
+    =
+    {{ result }}
+    <div>
+         <button @click="plus()">+</button>
+    <button @click="munas()">-</button>
+    <button @click="mult()">*</button>
+    <button @click = 'dev()'>/</button> 
+     <h2>list</h2>
+    <ul>
+        <li v-for="item in listItem" :key="item.id">{{item}}</li>
+    </ul>
+    <input type="text" v-model="newItem" @keyup.enter="addItems" aria-label="#">
+    </div>  
+<div class="article">
+    <article v-for="article in data" :key="article.id">
+    <h2 src="article_title">{{article.title}}</h2>
+    <p class="article_text">{{article.text}}</p>
+    <button class=".btn" @click = 'likeToggle = !likeToggle' :class="{like:likeToggle}">Like</button>
+</article>
+</div>
+
+   
+   
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            likeToggle: true,
+           data:[
+                    {
+                    title: 'title text',
+                    text: 'gggggggggggggggggg',
+                },
+                {
+                    title: 'new title text',
+                    text: 'jjjjjjjjjjjjjjjjjj',
+                },
+            ]
+        },
+            listItem:[1, 2, 4],
+            newItem:"",
+            blockWidth:100,
+            blockColor: '#ccc',
+            firstNumber:0,
+            secondNumber:0,
+            result:0,
+            modelData:'',
+            linkHref:'product.html',
+            imgPhoto:'',
+            styleBlock:{
+                backgroundColor:'green',
+                color:'red',
+            }
+        ,
+        methods: {
+            addItems(){
+                this.listItem.push(this.newItem)
+            },
+           
+            plus(){
+                this.result = this.firstNumber + this.secondNumber
+            },
+            munas(){
+                this.result = this.firstNumber - this.secondNumber
+            },
+            dev(){
+                this.result = this.firstNumber / this.secondNumber
+            },
+            mult(){
+                this.result = this.firstNumber * this.secondNumber
+            },
+            headingText(){
+                if (this.modelData === '') {
+                    this.modelData = "Заголовок блока"
+                } 
+            },            
+            send(){
+                console.log('Отправить данные внутри input:', this.modelData);
+            }
+        },
+        computed:{
+            change(){
+                return{
+                    width: `${this.blockWidth}px`,
+                    height: `${this.blockWidth}px`,
+              backgroundColor: this.blockColor,
+
+
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

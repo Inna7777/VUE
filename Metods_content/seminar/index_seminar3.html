@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminar3</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <!-- Вы разрабатываете приложение для управления списком контактов.
+У вас есть форма с полями "Имя", "Фамилия" и "Email", где
+пользователь может вводить информацию о новом контакте. После
+добавления контакта он должен отображаться в списке контактов.
+Требуется связать форму с данными и отображать список контактов
+на странице. -->
+   
+  <div id="app">
+    <div class="contacts">
+    <div class="contact" v-for = 'item in contacts' :key="item.id">
+       {{item.name}} {{item.secondName}}:----- email:{{item.eMail}}
+       
+    </div>
+    <form >
+        <input type="text" aria-label="name" placeholder="name" v-model="contact.name">
+        <input type="text" aria-label="secondname" placeholder="secondname" v-model="contact.secondName">
+        <input type="email" aria-label="secondname" placeholder="email" v-model="contact.eMail">       
+
+        <button @click="addContact" type="button">Добавить контакт</button>
+    </form>
+    
+</div>
+
+  </div>
+
+  <script>
+    new Vue({
+        el:"#app",
+        data:{
+            contact:{
+                name:'',
+            secondName:'',
+            eMail:'',
+            },
+            
+        contacts:[
+                {
+                    id:0,
+                    name: 'Ivan',
+                    secondName: 'Ivanov',
+                    eMail:'ivanov@mail.ru'
+                },
+                {
+                    id:1,
+                    name: 'Petr',
+                    secondName: 'Panov',
+                    eMail:'panov@mail.ru'
+                    
+                },
+                {   
+                    id:2,
+                    name: 'Semen',
+                    secondName: 'Reder',
+                    eMail:'rederv@mail.ru'
+                },
+            ]
+
+        },
+        methods: {
+            addContact(){
+                if (this.contact.name && this.contact.secondName && this.contact.eMail){
+                    // this.contacts.push({
+                    //     id: this.contacts.length,
+                    //     ...this.contact,
+                    // });
+                    this.contacts.push(JSON.parse(JSON.stringify(this.contact)))
+                    this.contact.name='';
+            this.contact.secondName='';
+            this.contact.eMail='';
+
+
+                }
+            }
+            
+        },
+      computed: {
+        
+      },
+    })
+  </script>
+
+</body>
+</html>

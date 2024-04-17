@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminar2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <!-- Вы разрабатываете простое приложение для
+отображения списка пользователей. У вас есть массив
+объектов users, где каждый объект представляет одного
+пользователя с его именем и возрастом. Вам необходимо
+отобразить каждого пользователя из массива в виде
+списка на странице.
+     -->
+  <div id="app">
+    <div class="products">
+    <div class="product" v-for = 'item in products' :key="item.id">
+       <input type="number" aria-label="#" v-model.number="item.quantity">
+       <input type="checkbox" aria-label="#" v-model="item.bought">
+       <span>{{item.name}}</span>
+       {{item.quantity}}-{{item.bought}}-{{item.name}}
+    </div>
+</div>
+
+  </div>
+
+  <script>
+    new Vue({
+        el:"#app",
+        data:{
+            products:[
+                {
+                    name: 'milk',
+                    quantity: 7,
+                    bought:false,
+                },
+                {
+                    name: 'bread',
+                    quantity: 4,
+                    bought:false,
+                },
+                {
+                    name: 'solt',
+                    quantity: 7,
+                    bought:false,
+                },
+            ]
+
+        },
+        methods: {
+            
+        },
+      computed: {
+        
+      },
+    })
+  </script>
+
+</body>
+</html>
