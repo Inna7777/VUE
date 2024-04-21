@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  
+</head>
+<body>
+    <div id="app">
+        <new-component title="hello hew title" ></new-component>
+        <new-component title="hello counter" ></new-component>
+        <button  @click = 'currentTab = nameButton' v-for="nameButton in nameButtons" :key="nameButton.id">{{nameButton}}</button>
+        <component :is ='changeTabs'></component>
+
+    </div>
+    
+    <script src="comp.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+            //    articles:['info article', 'info article2', 'info article3']
+             nameButtons:['one', 'two', 'tree'],
+             currentTab :'one'
+            },
+            computed: {
+                changeTabs(){
+                    return `change-${this.currentTab}`;
+                },
+            }
+            
+        })
+    </script>
+    
+</body>
+</html>
